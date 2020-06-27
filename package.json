@@ -1,0 +1,17 @@
+{
+  "name": "webgl-templates",
+  "version": "1.0.0",
+  "description": "Collection of WebGL runners using different frameworks.",
+  "main": "server.js",
+  "dependencies": {},
+  "devDependencies": {
+    "express": "^4.17.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "download-fe-libs": "./libs/download-libs.sh"
+  },
+  "author": "",
+  "license": "ISC"
+}
