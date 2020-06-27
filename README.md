@@ -5,12 +5,12 @@ All examples just span up a rectangle filling the whole window and apply a verte
 
 ## The templates
 
-- [GLea](/glea)
-- [P5](/p5)
-- [Phenomenon](/phenomenon)
-- [PIXI.js](/pixi)
-- [regl](/regl)
-- [THREE.js](/three)
+- [GLea](glea/)
+- [P5](p5/)
+- [Phenomenon](phenomenon/)
+- [PIXI.js](pixi/)
+- [regl](regl/)
+- [THREE.js](three/)
 
 ## Running it
 
