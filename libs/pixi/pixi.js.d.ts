@@ -4904,7 +4904,9 @@ declare namespace PIXI {
              */
             transform: PIXI.Matrix;
             /**
-             * Updates the projection matrix based on a projection frame (which is a rectangle)
+             * Updates the projection matrix based on a projection frame (which is a rectangle).
+             *
+             * Make sure to run `renderer.framebuffer.setViewport(destinationFrame)` after calling this.
              *
              * @param {PIXI.Rectangle} destinationFrame - The destination frame.
              * @param {PIXI.Rectangle} sourceFrame - The source frame.
@@ -4980,6 +4982,7 @@ declare namespace PIXI {
             readonly destinationFrame: PIXI.Rectangle;
             /**
              * Bind the current render texture
+             *
              * @param {PIXI.RenderTexture} [renderTexture] - RenderTexture to bind, by default its `null`, the screen
              * @param {PIXI.Rectangle} [sourceFrame] - part of screen that is mapped to the renderTexture
              * @param {PIXI.Rectangle} [destinationFrame] - part of renderTexture, by default it has the same size as sourceFrame
@@ -6039,6 +6042,12 @@ declare namespace PIXI {
          * @readonly
          */
         readonly uClampOffset: Float32Array;
+        /**
+         * Tracks Texture frame changes
+         * @member {number} PIXI.TextureMatrix#_textureID
+         * @protected
+         */
+        protected _textureID: number;
         /**
          * Tracks Texture frame changes
          * @member {number} PIXI.TextureMatrix#_updateID
@@ -8352,7 +8361,7 @@ declare namespace PIXI {
          * @param {...PIXI.DisplayObject} children - The DisplayObject(s) to add to the container
          * @return {PIXI.DisplayObject} The first child that was added.
          */
-        addChild(...children: PIXI.DisplayObject[]): PIXI.DisplayObject;
+        addChild<TChildren extends PIXI.DisplayObject[]>(...children: TChildren): TChildren[0];
         /**
          * Adds a child to the container at a specified index. If the index is out of bounds an error will be thrown
          *
@@ -8395,7 +8404,7 @@ declare namespace PIXI {
          * @param {...PIXI.DisplayObject} children - The DisplayObject(s) to remove
          * @return {PIXI.DisplayObject} The first child that was removed.
          */
-        removeChild(...children: PIXI.DisplayObject[]): PIXI.DisplayObject;
+        removeChild<TChildren extends PIXI.DisplayObject[]>(...children: TChildren): TChildren[0];
         /**
          * Removes a child from the specified index position.
          *
@@ -10207,7 +10216,7 @@ declare namespace PIXI {
          * @param {...PIXI.DisplayObject} children - The DisplayObject(s) to add to the container
          * @return {PIXI.DisplayObject} The first child that was added.
          */
-        addChild(...children: PIXI.DisplayObject[]): PIXI.DisplayObject;
+        addChild<TChildren extends PIXI.DisplayObject[]>(...children: TChildren): TChildren[0];
         /**
          * Adds a child to the container at a specified index. If the index is out of bounds an error will be thrown
          *
@@ -10250,7 +10259,7 @@ declare namespace PIXI {
          * @param {...PIXI.DisplayObject} children - The DisplayObject(s) to remove
          * @return {PIXI.DisplayObject} The first child that was removed.
          */
-        removeChild(...children: PIXI.DisplayObject[]): PIXI.DisplayObject;
+        removeChild<TChildren extends PIXI.DisplayObject[]>(...children: TChildren): TChildren[0];
         /**
          * Removes a child from the specified index position.
          *
@@ -13569,7 +13578,7 @@ declare namespace PIXI {
          * @param {...PIXI.DisplayObject} children - The DisplayObject(s) to add to the container
          * @return {PIXI.DisplayObject} The first child that was added.
          */
-        addChild(...children: PIXI.DisplayObject[]): PIXI.DisplayObject;
+        addChild<TChildren extends PIXI.DisplayObject[]>(...children: TChildren): TChildren[0];
         /**
          * Adds a child to the container at a specified index. If the index is out of bounds an error will be thrown
          *
@@ -13612,7 +13621,7 @@ declare namespace PIXI {
          * @param {...PIXI.DisplayObject} children - The DisplayObject(s) to remove
          * @return {PIXI.DisplayObject} The first child that was removed.
          */
-        removeChild(...children: PIXI.DisplayObject[]): PIXI.DisplayObject;
+        removeChild<TChildren extends PIXI.DisplayObject[]>(...children: TChildren): TChildren[0];
         /**
          * Removes a child from the specified index position.
          *
@@ -14677,7 +14686,7 @@ declare namespace PIXI {
          * @param {...PIXI.DisplayObject} children - The DisplayObject(s) to add to the container
          * @return {PIXI.DisplayObject} The first child that was added.
          */
-        addChild(...children: PIXI.DisplayObject[]): PIXI.DisplayObject;
+        addChild<TChildren extends PIXI.DisplayObject[]>(...children: TChildren): TChildren[0];
         /**
          * Adds a child to the container at a specified index. If the index is out of bounds an error will be thrown
          *
@@ -14720,7 +14729,7 @@ declare namespace PIXI {
          * @param {...PIXI.DisplayObject} children - The DisplayObject(s) to remove
          * @return {PIXI.DisplayObject} The first child that was removed.
          */
-        removeChild(...children: PIXI.DisplayObject[]): PIXI.DisplayObject;
+        removeChild<TChildren extends PIXI.DisplayObject[]>(...children: TChildren): TChildren[0];
         /**
          * Removes a child from the specified index position.
          *
@@ -15485,7 +15494,7 @@ declare namespace PIXI {
          * @param {...PIXI.DisplayObject} children - The DisplayObject(s) to add to the container
          * @return {PIXI.DisplayObject} The first child that was added.
          */
-        addChild(...children: PIXI.DisplayObject[]): PIXI.DisplayObject;
+        addChild<TChildren extends PIXI.DisplayObject[]>(...children: TChildren): TChildren[0];
         /**
          * Adds a child to the container at a specified index. If the index is out of bounds an error will be thrown
          *
@@ -15528,7 +15537,7 @@ declare namespace PIXI {
          * @param {...PIXI.DisplayObject} children - The DisplayObject(s) to remove
          * @return {PIXI.DisplayObject} The first child that was removed.
          */
-        removeChild(...children: PIXI.DisplayObject[]): PIXI.DisplayObject;
+        removeChild<TChildren extends PIXI.DisplayObject[]>(...children: TChildren): TChildren[0];
         /**
          * Removes a child from the specified index position.
          *
@@ -16307,7 +16316,7 @@ declare namespace PIXI {
          * @param {...PIXI.DisplayObject} children - The DisplayObject(s) to add to the container
          * @return {PIXI.DisplayObject} The first child that was added.
          */
-        addChild(...children: PIXI.DisplayObject[]): PIXI.DisplayObject;
+        addChild<TChildren extends PIXI.DisplayObject[]>(...children: TChildren): TChildren[0];
         /**
          * Adds a child to the container at a specified index. If the index is out of bounds an error will be thrown
          *
@@ -16350,7 +16359,7 @@ declare namespace PIXI {
          * @param {...PIXI.DisplayObject} children - The DisplayObject(s) to remove
          * @return {PIXI.DisplayObject} The first child that was removed.
          */
-        removeChild(...children: PIXI.DisplayObject[]): PIXI.DisplayObject;
+        removeChild<TChildren extends PIXI.DisplayObject[]>(...children: TChildren): TChildren[0];
         /**
          * Removes a child from the specified index position.
          *
@@ -17130,7 +17139,7 @@ declare namespace PIXI {
          * @param {...PIXI.DisplayObject} children - The DisplayObject(s) to add to the container
          * @return {PIXI.DisplayObject} The first child that was added.
          */
-        addChild(...children: PIXI.DisplayObject[]): PIXI.DisplayObject;
+        addChild<TChildren extends PIXI.DisplayObject[]>(...children: TChildren): TChildren[0];
         /**
          * Adds a child to the container at a specified index. If the index is out of bounds an error will be thrown
          *
@@ -17173,7 +17182,7 @@ declare namespace PIXI {
          * @param {...PIXI.DisplayObject} children - The DisplayObject(s) to remove
          * @return {PIXI.DisplayObject} The first child that was removed.
          */
-        removeChild(...children: PIXI.DisplayObject[]): PIXI.DisplayObject;
+        removeChild<TChildren extends PIXI.DisplayObject[]>(...children: TChildren): TChildren[0];
         /**
          * Removes a child from the specified index position.
          *
@@ -18016,7 +18025,7 @@ declare namespace PIXI {
          * @param {...PIXI.DisplayObject} children - The DisplayObject(s) to add to the container
          * @return {PIXI.DisplayObject} The first child that was added.
          */
-        addChild(...children: PIXI.DisplayObject[]): PIXI.DisplayObject;
+        addChild<TChildren extends PIXI.DisplayObject[]>(...children: TChildren): TChildren[0];
         /**
          * Adds a child to the container at a specified index. If the index is out of bounds an error will be thrown
          *
@@ -18059,7 +18068,7 @@ declare namespace PIXI {
          * @param {...PIXI.DisplayObject} children - The DisplayObject(s) to remove
          * @return {PIXI.DisplayObject} The first child that was removed.
          */
-        removeChild(...children: PIXI.DisplayObject[]): PIXI.DisplayObject;
+        removeChild<TChildren extends PIXI.DisplayObject[]>(...children: TChildren): TChildren[0];
         /**
          * Removes a child from the specified index position.
          *
@@ -19520,14 +19529,14 @@ declare namespace PIXI {
          */
         height: number;
         /**
-         * The anchor sets the origin point of the text. The default value is taken from the {@link PIXI.Texture|Texture}
+         * The anchor sets the origin point of the sprite. The default value is taken from the {@link PIXI.Texture|Texture}
          * and passed to the constructor.
          *
-         * The default is `(0,0)`, this means the text's origin is the top left.
+         * The default is `(0,0)`, this means the sprite's origin is the top left.
          *
-         * Setting the anchor to `(0.5,0.5)` means the text's origin is centered.
+         * Setting the anchor to `(0.5,0.5)` means the sprite's origin is centered.
          *
-         * Setting the anchor to `(1,1)` would mean the text's origin point will be the bottom right corner.
+         * Setting the anchor to `(1,1)` would mean the sprite's origin point will be the bottom right corner.
          *
          * If you pass only single parameter, it will set both x and y to the same value as shown in the example below.
          *
@@ -19596,7 +19605,7 @@ declare namespace PIXI {
          * @param {...PIXI.DisplayObject} children - The DisplayObject(s) to add to the container
          * @return {PIXI.DisplayObject} The first child that was added.
          */
-        addChild(...children: PIXI.DisplayObject[]): PIXI.DisplayObject;
+        addChild<TChildren extends PIXI.DisplayObject[]>(...children: TChildren): TChildren[0];
         /**
          * Adds a child to the container at a specified index. If the index is out of bounds an error will be thrown
          *
@@ -19639,7 +19648,7 @@ declare namespace PIXI {
          * @param {...PIXI.DisplayObject} children - The DisplayObject(s) to remove
          * @return {PIXI.DisplayObject} The first child that was removed.
          */
-        removeChild(...children: PIXI.DisplayObject[]): PIXI.DisplayObject;
+        removeChild<TChildren extends PIXI.DisplayObject[]>(...children: TChildren): TChildren[0];
         /**
          * Removes a child from the specified index position.
          *
@@ -20261,20 +20270,33 @@ declare namespace PIXI {
          */
         updateAnchor: boolean;
         /**
-         * Function to call when an AnimatedSprite finishes playing.
+         * User-assigned function to call when an AnimatedSprite finishes playing.
          *
+         * @example
+         * animation.onComplete = function () {
+         *   // finished!
+         * };
          * @member {Function} PIXI.AnimatedSprite#onComplete
          */
         onComplete: (...params: any[]) => any;
         /**
-         * Function to call when an AnimatedSprite changes which texture is being rendered.
+         * User-assigned function to call when an AnimatedSprite changes which texture is being rendered.
          *
+         * @example
+         * animation.onFrameChange = function () {
+         *   // updated!
+         * };
          * @member {Function} PIXI.AnimatedSprite#onFrameChange
          */
         onFrameChange: (...params: any[]) => any;
         /**
-         * Function to call when `loop` is true, and an AnimatedSprite is played and loops around to start again.
+         * User-assigned function to call when `loop` is true, and an AnimatedSprite is played and
+         * loops around to start again.
          *
+         * @example
+         * animation.onLoop = function () {
+         *   // looped!
+         * };
          * @member {Function} PIXI.AnimatedSprite#onLoop
          */
         onLoop: (...params: any[]) => any;
@@ -20482,14 +20504,14 @@ declare namespace PIXI {
          */
         height: number;
         /**
-         * The anchor sets the origin point of the text. The default value is taken from the {@link PIXI.Texture|Texture}
+         * The anchor sets the origin point of the sprite. The default value is taken from the {@link PIXI.Texture|Texture}
          * and passed to the constructor.
          *
-         * The default is `(0,0)`, this means the text's origin is the top left.
+         * The default is `(0,0)`, this means the sprite's origin is the top left.
          *
-         * Setting the anchor to `(0.5,0.5)` means the text's origin is centered.
+         * Setting the anchor to `(0.5,0.5)` means the sprite's origin is centered.
          *
-         * Setting the anchor to `(1,1)` would mean the text's origin point will be the bottom right corner.
+         * Setting the anchor to `(1,1)` would mean the sprite's origin point will be the bottom right corner.
          *
          * If you pass only single parameter, it will set both x and y to the same value as shown in the example below.
          *
@@ -20558,7 +20580,7 @@ declare namespace PIXI {
          * @param {...PIXI.DisplayObject} children - The DisplayObject(s) to add to the container
          * @return {PIXI.DisplayObject} The first child that was added.
          */
-        addChild(...children: PIXI.DisplayObject[]): PIXI.DisplayObject;
+        addChild<TChildren extends PIXI.DisplayObject[]>(...children: TChildren): TChildren[0];
         /**
          * Adds a child to the container at a specified index. If the index is out of bounds an error will be thrown
          *
@@ -20601,7 +20623,7 @@ declare namespace PIXI {
          * @param {...PIXI.DisplayObject} children - The DisplayObject(s) to remove
          * @return {PIXI.DisplayObject} The first child that was removed.
          */
-        removeChild(...children: PIXI.DisplayObject[]): PIXI.DisplayObject;
+        removeChild<TChildren extends PIXI.DisplayObject[]>(...children: TChildren): TChildren[0];
         /**
          * Removes a child from the specified index position.
          *
@@ -21321,14 +21343,14 @@ declare namespace PIXI {
          */
         roundPixels: boolean;
         /**
-         * The anchor sets the origin point of the text. The default value is taken from the {@link PIXI.Texture|Texture}
+         * The anchor sets the origin point of the sprite. The default value is taken from the {@link PIXI.Texture|Texture}
          * and passed to the constructor.
          *
-         * The default is `(0,0)`, this means the text's origin is the top left.
+         * The default is `(0,0)`, this means the sprite's origin is the top left.
          *
-         * Setting the anchor to `(0.5,0.5)` means the text's origin is centered.
+         * Setting the anchor to `(0.5,0.5)` means the sprite's origin is centered.
          *
-         * Setting the anchor to `(1,1)` would mean the text's origin point will be the bottom right corner.
+         * Setting the anchor to `(1,1)` would mean the sprite's origin point will be the bottom right corner.
          *
          * If you pass only single parameter, it will set both x and y to the same value as shown in the example below.
          *
@@ -21397,7 +21419,7 @@ declare namespace PIXI {
          * @param {...PIXI.DisplayObject} children - The DisplayObject(s) to add to the container
          * @return {PIXI.DisplayObject} The first child that was added.
          */
-        addChild(...children: PIXI.DisplayObject[]): PIXI.DisplayObject;
+        addChild<TChildren extends PIXI.DisplayObject[]>(...children: TChildren): TChildren[0];
         /**
          * Adds a child to the container at a specified index. If the index is out of bounds an error will be thrown
          *
@@ -21440,7 +21462,7 @@ declare namespace PIXI {
          * @param {...PIXI.DisplayObject} children - The DisplayObject(s) to remove
          * @return {PIXI.DisplayObject} The first child that was removed.
          */
-        removeChild(...children: PIXI.DisplayObject[]): PIXI.DisplayObject;
+        removeChild<TChildren extends PIXI.DisplayObject[]>(...children: TChildren): TChildren[0];
         /**
          * Removes a child from the specified index position.
          *
@@ -22343,14 +22365,14 @@ declare namespace PIXI {
          */
         roundPixels: boolean;
         /**
-         * The anchor sets the origin point of the text. The default value is taken from the {@link PIXI.Texture|Texture}
+         * The anchor sets the origin point of the sprite. The default value is taken from the {@link PIXI.Texture|Texture}
          * and passed to the constructor.
          *
-         * The default is `(0,0)`, this means the text's origin is the top left.
+         * The default is `(0,0)`, this means the sprite's origin is the top left.
          *
-         * Setting the anchor to `(0.5,0.5)` means the text's origin is centered.
+         * Setting the anchor to `(0.5,0.5)` means the sprite's origin is centered.
          *
-         * Setting the anchor to `(1,1)` would mean the text's origin point will be the bottom right corner.
+         * Setting the anchor to `(1,1)` would mean the sprite's origin point will be the bottom right corner.
          *
          * If you pass only single parameter, it will set both x and y to the same value as shown in the example below.
          *
@@ -22419,7 +22441,7 @@ declare namespace PIXI {
          * @param {...PIXI.DisplayObject} children - The DisplayObject(s) to add to the container
          * @return {PIXI.DisplayObject} The first child that was added.
          */
-        addChild(...children: PIXI.DisplayObject[]): PIXI.DisplayObject;
+        addChild<TChildren extends PIXI.DisplayObject[]>(...children: TChildren): TChildren[0];
         /**
          * Adds a child to the container at a specified index. If the index is out of bounds an error will be thrown
          *
@@ -22462,7 +22484,7 @@ declare namespace PIXI {
          * @param {...PIXI.DisplayObject} children - The DisplayObject(s) to remove
          * @return {PIXI.DisplayObject} The first child that was removed.
          */
-        removeChild(...children: PIXI.DisplayObject[]): PIXI.DisplayObject;
+        removeChild<TChildren extends PIXI.DisplayObject[]>(...children: TChildren): TChildren[0];
         /**
          * Removes a child from the specified index position.
          *
@@ -23535,7 +23557,25 @@ declare namespace PIXI {
         static uninstall(name: string): void;
         /**
          * Generates a bitmap-font for the given style and character set. This does not support
-         * kernings yet.
+         * kernings yet. With `style` properties, only the following non-layout properties are used:
+         *
+         * - {@link PIXI.TextStyle#dropShadow|dropShadow}
+         * - {@link PIXI.TextStyle#dropShadowDistance|dropShadowDistance}
+         * - {@link PIXI.TextStyle#dropShadowColor|dropShadowColor}
+         * - {@link PIXI.TextStyle#dropShadowBlur|dropShadowBlur}
+         * - {@link PIXI.TextStyle#dropShadowAngle|dropShadowAngle}
+         * - {@link PIXI.TextStyle#fill|fill}
+         * - {@link PIXI.TextStyle#fillGradientStops|fillGradientStops}
+         * - {@link PIXI.TextStyle#fillGradientType|fillGradientType}
+         * - {@link PIXI.TextStyle#fontFamily|fontFamily}
+         * - {@link PIXI.TextStyle#fontSize|fontSize}
+         * - {@link PIXI.TextStyle#fontVariant|fontVariant}
+         * - {@link PIXI.TextStyle#fontWeight|fontWeight}
+         * - {@link PIXI.TextStyle#lineJoin|lineJoin}
+         * - {@link PIXI.TextStyle#miterLimit|miterLimit}
+         * - {@link PIXI.TextStyle#stroke|stroke}
+         * - {@link PIXI.TextStyle#strokeThickness|strokeThickness}
+         * - {@link PIXI.TextStyle#textBaseline|textBaseline}
          *
          * @param {string} name - The name of the custom font to use with BitmapText.
          * @param {object|PIXI.TextStyle} [style] - Style options to render with BitmapFont.
@@ -23952,7 +23992,7 @@ declare namespace PIXI {
          * @param {...PIXI.DisplayObject} children - The DisplayObject(s) to add to the container
          * @return {PIXI.DisplayObject} The first child that was added.
          */
-        addChild(...children: PIXI.DisplayObject[]): PIXI.DisplayObject;
+        addChild<TChildren extends PIXI.DisplayObject[]>(...children: TChildren): TChildren[0];
         /**
          * Adds a child to the container at a specified index. If the index is out of bounds an error will be thrown
          *
@@ -23995,7 +24035,7 @@ declare namespace PIXI {
          * @param {...PIXI.DisplayObject} children - The DisplayObject(s) to remove
          * @return {PIXI.DisplayObject} The first child that was removed.
          */
-        removeChild(...children: PIXI.DisplayObject[]): PIXI.DisplayObject;
+        removeChild<TChildren extends PIXI.DisplayObject[]>(...children: TChildren): TChildren[0];
         /**
          * Removes a child from the specified index position.
          *
@@ -24950,10 +24990,10 @@ declare namespace PIXI {
          * PIXI.utils.string2hex("#ffffff"); // returns 0xffffff
          * @memberof PIXI.utils
          * @function string2hex
-         * @param {string} - The string color (e.g., `"#ffffff"`)
+         * @param {string} string - The string color (e.g., `"#ffffff"`)
          * @return {number} Number in hexadecimal.
          */
-        function string2hex(): number;
+        function string2hex(string: string): number;
         /**
          * Converts a color as an [R, G, B] array of normalized floats to a hexadecimal number.
          *

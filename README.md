@@ -11,6 +11,7 @@ All examples just span up a rectangle filling the whole window and apply a verte
 - [PIXI.js](pixi/)
 - [regl](regl/)
 - [THREE.js](three/)
+- [Vanilla WebGL as Web Component](vanilla-web-component/)
 
 ## Running it
 

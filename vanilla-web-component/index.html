@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <title>Document</title>
+</head>
+<body>
+  <digital-art>
+    <script type="buffer" name="position" data-size="2">
+      [-1, -1, -1, 5, 2, -1]
+    </script>
+    <script type="vert">
+      precision highp float;
+      uniform float time;
+      uniform vec2 resolution;
+      
+      attribute vec4 position;
+      
+      void main() {
+        gl_Position = position;         
+      }
+    </script>
+    <script type="frag">
+      precision highp float;
+      uniform float time;
+      uniform vec2 resolution;
+  
+      vec2 rotate(vec2 p, float a) {
+        return vec2(p.x * cos(a) - p.y * sin(a),
+                    p.x * sin(a) + p.y * cos(a));
+      }
+      
+      void main() {
+        vec2 p = gl_FragCoord.xy / resolution - .5;
+        float aspect = resolution.x / resolution.y;
+        p.x *= aspect;
+        float t = time * 1e-3;
+        vec2 p0 = vec2(sin(p.x * 10.), cos(p.y * 10.));
+        vec2 p1 = rotate(p0, t * .5) * sin(t * .1);
+        gl_FragColor = vec4(sin(abs(p1.x * p1.y * p.y) * 50. + 2. + t * 2.), cos(p1.x * 10. + t) * sin(p1.y * 10. + t), sin((p.x + p1.y) * .5 + time * 1e-3), 1.);
+      }
+    </script>
+  </digital-art>
+  <script src="index.js"></script>
+</body>
+</html>
